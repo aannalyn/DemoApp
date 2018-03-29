@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-capitalize>{{this.action}} Todo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form novalidate [formGroup]="todoForm" (ngSubmit)="saveTodo()">
+
+    <ion-item>
+      <ion-label floating>Task</ion-label>  
+      <ion-input 
+        #task
+        formControlName="task"
+        type="text"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block type="submit">Save</button>
+    </div>
+
+  </form>
+
+</ion-content>
