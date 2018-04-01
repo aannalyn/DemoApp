@@ -30,7 +30,7 @@ export class ResetPasswordPage {
 
   createForm() {
     this.resetPasswordForm = this.fb.group({
-      email: ['', Validators.compose([Validators.required])]
+      email: ['', [Validators.required]]
     });
   }
 

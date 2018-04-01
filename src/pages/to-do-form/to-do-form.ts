@@ -35,7 +35,7 @@ export class ToDoFormPage {
   createForm() {
     let task = this.todo ? this.todo['task'] : '';
     this.todoForm = this.fb.group({
-      task: [task, Validators.compose([Validators.required])],
+      task: [task, [Validators.required]],
     });
   }
 
@@ -46,7 +46,6 @@ export class ToDoFormPage {
     if (this.todoForm.valid) {
 
       if (this.action == 'add') {
-
         this.todoProvider.addTodo({ isDone: false, ...this.todoForm.value }).then(res => {
           loader.dismiss();
           this.navCtrl.pop();
@@ -56,6 +55,7 @@ export class ToDoFormPage {
         });
         
       } else if (this.action == 'edit')  {
+        console.log('edit');
 
         this.todo['task'] = this.todoForm.value.task;
         this.todoProvider.editTodo(this.todo).then(res => {

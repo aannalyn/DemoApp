@@ -7,9 +7,6 @@ import { User } from '../../models/user.model';
 @Injectable()
 export class UserProvider {
 
-
-  private userRef = this.db.object<User>(`users/${this.getUserID()}`);
-
   constructor(
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
@@ -21,10 +18,6 @@ export class UserProvider {
 
   getUserEmail() {
     return this.afAuth.auth.currentUser.email;
-  }
-
-  addUser(user: User) {
-    return this.userRef.update(user);
   }
 
 }

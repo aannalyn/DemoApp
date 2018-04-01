@@ -6,32 +6,32 @@ import { ITodo } from '../../models/todo.model';
 
 @Injectable()
 export class TodoProvider {
-  
-  private todoListRef = this.db.list<ITodo>(`users/${this.getUserID()}/todo`);
 
   constructor(
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
-  ) { }
+  ) {
+    
+  }
 
-  getUserID() {
-    return this.afAuth.auth.currentUser.uid;
+  getListRef() {
+    return this.db.list<ITodo>(`users/${this.afAuth.auth.currentUser.uid}/todo`);
   }
 
   getTodoList() {
-    return this.todoListRef;
+    return this.getListRef();
   }
 
   addTodo(todo: ITodo) {
-    return this.todoListRef.push(todo);
+    return this.getListRef().push(todo);
   }
 
   editTodo(todo: ITodo) {
-    return this.todoListRef.update(todo.key, todo);
+    return this.getListRef().update(todo.key, todo);
   }
 
   removeTodo(todo: ITodo) {
-    return this.todoListRef.remove(todo.key);
+    return this.getListRef().remove(todo.key);
   }
 
 }

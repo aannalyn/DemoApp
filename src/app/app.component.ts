@@ -17,7 +17,7 @@ export class MyApp {
 
   rootPage:string;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -31,11 +31,9 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Home', component: 'HomePage' },
-      { title: 'Gallery', component: 'GalleryPage' },      
-      { title: 'Profile', component: 'ProfilePage' },
-      { title: 'ToDo', component: 'ToDoPage' },      
-      { title: 'Settings', component: 'SettingsPage' },
+      { title: 'Home', component: 'HomePage', icon: 'home' },      
+      { title: 'Reddits', component: 'RedditsPage', icon: 'megaphone' },      
+      { title: 'ToDo', component: 'ToDoPage', icon: 'list' }      
     ];
 
     this.afAuth.authState.subscribe(user => {
@@ -63,6 +61,6 @@ export class MyApp {
     this.AuthProvider.signOut();
 
     this.menuCtrl.close();
-    this.menuCtrl.enable(false, 'menu2');
+    this.menuCtrl.enable(false, 'mainmenu');
   }
 }

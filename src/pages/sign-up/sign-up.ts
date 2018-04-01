@@ -7,8 +7,6 @@ import { User } from '../../models/user.model';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ToastProvider } from '../../providers/toast/toast';
 import { LoadingProvider } from '../../providers/loading/loading';
-import { UserProvider } from '../../providers/user/user';
-
 @IonicPage()
 @Component({
   selector: 'page-sign-up',
@@ -24,7 +22,6 @@ export class SignUpPage {
     private navParams: NavParams,
     private fb: FormBuilder,
     private authProvider: AuthProvider,
-    private userProvider: UserProvider,    
     private toast: ToastProvider,
     private loading: LoadingProvider) {
     
@@ -33,8 +30,8 @@ export class SignUpPage {
 
   createForm() {
     this.signUpForm = this.fb.group({
-      email: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.minLength(6), Validators.required]]
     });
   }
 
@@ -48,10 +45,7 @@ export class SignUpPage {
         this.toast.show(err.message);
       });
 
-
     }
   }
-
-
 
 }
